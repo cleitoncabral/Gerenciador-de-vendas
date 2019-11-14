@@ -43,11 +43,11 @@ void menu(FILE *arq1){
 
     printf("\n\nESCOLHA UMA OPÇÃO :");
     printf("\n1 - EXIBIR A TABELA DE VENDAS");
-    printf("\n2- EXIBIR DADOS DOS DIAS");
-    printf("\n3- EXIBIR DADOS DOS PRODUTOS");
-    printf("\n4- EXIBIR O PREÇO DE CADA ITEM");
-    printf("\n5- ALTERAR O DADO DE UM ITEM");
-    printf("\n6- GERAR RELATÓRIO");
+    printf("\n2 - EXIBIR DADOS DOS DIAS");
+    printf("\n3 - EXIBIR DADOS DOS PRODUTOS");
+    printf("\n4 - EXIBIR O PREÇO DE CADA ITEM");
+    printf("\n5 - ALTERAR O DADO DE UM ITEM");
+    printf("\n6 - GERAR RELATÓRIO");
     printf("\nRESPOSTA :   ");
     scanf("%i", &entrada_menu);
 
@@ -104,11 +104,11 @@ void corrije_dado(){
 
     switch (altera_opcao){
         case 0:
-            printf("\nQUAL O NOVO PREÇO DO PRODUTO ?  ");
+            printf("\nQUAL O NOVO PREÇO DO PRODUTO?  ");
             scanf("%f",&preco_produto[escolha_produto-1]);
             break;
         case 1:
-            printf("\nQUAL O DIA QUE DESEJA ALTERAR ?  ");
+            printf("\nQUAL O DIA QUE DESEJA ALTERAR?  ");
             printf("\n1 - DOMINGO");
             printf("\n2 - SEGUNDA");
             printf("\n3 - TERÇA");
@@ -118,7 +118,7 @@ void corrije_dado(){
             printf("\n7 - SÁBADO");
             printf("\nRESPOSTA :   ");
             scanf("%i",&dia_alterar);
-            printf("\nQUAL A NOVA QUANTIA DO PRODUTO ?  ");
+            printf("\nQUAL A NOVA QUANTIA DO PRODUTO?  ");
             scanf("%i",&produto_dia[escolha_produto-1][dia_alterar-1]);
             break;
     }
@@ -168,21 +168,19 @@ void calculo_exibe_dados_produto(){
             total_venda_de_todos_unidade+=produto_dia[i][j];
             total_venda_produto_unidade[i]+=produto_dia[i][j];
             if (i==0 && j==0){
-            mais_vendido[1][1] = total_venda_produto_unidade[i];
-            menos_vendido[1][1]=total_venda_produto_unidade[i];
+                mais_vendido[1][1] = total_venda_produto_unidade[i];
+                menos_vendido[1][1]=total_venda_produto_unidade[i];
             }
             if (total_venda_produto_unidade[i]<menos_vendido[1][1]){
-                 menos_vendido[1][1]= total_venda_produto_unidade[i];
-                 posicao_nome_menos = i;
+                menos_vendido[1][1]= total_venda_produto_unidade[i];
+                posicao_nome_menos = i;
             }
             if (total_venda_produto_unidade[i] > mais_vendido[1][1]){
                 mais_vendido[1][1]= total_venda_produto_unidade[i];
                 posicao_nome_mais = i;
             }
         }
-
-        }
-
+    }
     //VALOR
     for(i = 0; i<10; i++){
         total_venda_produto_valor[i]=total_venda_produto_unidade[i]*preco_produto[i];
@@ -191,13 +189,13 @@ void calculo_exibe_dados_produto(){
             mais_vendidoRS[1]=  total_venda_produto_valor[i];
             menos_vendidoRS[1]= total_venda_produto_valor[i];
         }
-            if (total_venda_produto_valor[i] < menos_vendidoRS[1]){
-                  menos_vendidoRS[1]=total_venda_produto_valor[i];
-                  posicao_venda_menos = i;
+        if (total_venda_produto_valor[i] < menos_vendidoRS[1]){
+            menos_vendidoRS[1]=total_venda_produto_valor[i];
+            posicao_venda_menos = i;
             }
-            if (total_venda_produto_valor[i] > mais_vendidoRS[1]){
-                mais_vendidoRS[1]=total_venda_produto_valor[i];
-                posicao_venda_mais = i;
+        if (total_venda_produto_valor[i] > mais_vendidoRS[1]){
+            mais_vendidoRS[1]=total_venda_produto_valor[i];
+            posicao_venda_mais = i;
             }
     }
 }
@@ -257,64 +255,17 @@ void exibe_dados_produto(FILE *arq1){
             printf("\n%s %.2f",nome_produto[i],total_venda_produto_valor[i]);
         }
     }
-    //MAIS E MENOS VENDIDOS
-    fprintf(arq1,"\n %s produto que mais vendeu (R$):  R$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
-    fprintf(arq1,"\n %s produto que menos vendeu (R$):  R$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
+    fprintf(arq1,"\nPRODUTO QUE MAIS VENDEU (EM REAIS): %sR$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
+    fprintf(arq1,"\nPRODUTO QUE MAIS VENDEU (UNIDADE):  %s%i ",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
     //MAIS E MENOS VENDIDOS UNIDADE
-    fprintf(arq1,"\n %s produto que mais vendeu (UN):  %i",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
-    fprintf(arq1,"\n %s produto que menos vendeu (UN):  %i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);
-}
-/*void mais_menos(){
-//UNIDADE
-    for(i = 0; i<10; i++){
-        for(j = 0; j<7; j++){
-            total_venda_de_todos_unidade+=produto_dia[i][j];
-            total_venda_produto_unidade[i]+=produto_dia[i][j];
-            if (i==0 && j==0){
-            mais_vendido[1][1] = total_venda_produto_unidade[i];
-            menos_vendido[1][1]=total_venda_produto_unidade[i];
-            }
-            if (total_venda_produto_unidade[i]<menos_vendido[1][1]){
-                 menos_vendido[1][1]= total_venda_produto_unidade[i];
-                 posicao_nome_menos = i;
-            }
-            if (total_venda_produto_unidade[i] > mais_vendido[1][1]){
-                mais_vendido[1][1]= total_venda_produto_unidade[i];
-                posicao_nome_mais = i;
-            }
-        }
-    }
-    //VALOR
-    for(i = 0; i<10; i++){
-        total_venda_produto_valor[i]=total_venda_produto_unidade[i]*preco_produto[i];
-        total_venda_de_todos_valor+=total_venda_produto_valor[i];
-        if (i==0){
-            mais_vendidoRS[1]=  total_venda_produto_valor[i];
-            menos_vendidoRS[1]= total_venda_produto_valor[i];
-        }
-            if (total_venda_produto_valor[i] < menos_vendidoRS[1]){
-                  menos_vendidoRS[1]=total_venda_produto_valor[i];
-                  posicao_venda_menos = i;
-            }
-            if (total_venda_produto_valor[i] > mais_vendidoRS[1]){
-                mais_vendidoRS[1]=total_venda_produto_valor[i];
-                posicao_venda_mais = i;
-            }
-    }
+    fprintf(arq1,"\nPRODUTO QUE MENOS VENDEU (EM REAIS):%sR$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
+    fprintf(arq1,"\nPRODUTO QUE MENOS VENDEU (UNIDADE): %s%i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);
 
 }
-void exibe_mais_menos(FILE *arq1){
-    mais_menos();
-//MAIS E MENOS VENDIDOS
-    printf("\n %s produto que mais vendeu (R$):  R$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
-    printf("\n %s produto que menos vendeu (R$):  R$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
-    //MAIS E MENOS VENDIDOS UNIDADE
-    printf("\n %s produto que mais vendeu (UN):  %i",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
-    printf("\n %s produto que menos vendeu (UN):  %i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);}*/
 
 void exibe_produto_semana(FILE *arq1){
     printf("\nTOTAL DAS VENDAS (EM UNIDADE): %i",total_venda_de_todos_unidade);
-    printf("\nTOTAL DAS VENDAS (EM UNIDADE): %.2f",total_venda_de_todos_valor);
+    printf("\nTOTAL DAS VENDAS (EM UNIDADE): R$%.2f",total_venda_de_todos_valor);
 }
 
 void gera_relatorio(FILE *arq1){
@@ -358,15 +309,16 @@ void gera_relatorio(FILE *arq1){
 
     //INFORMAÇÕES SEMANA
     fprintf(arq1,"\n\nTOTAL DAS VENDAS (EM UNIDADE): %i",total_venda_de_todos_unidade);
-    fprintf(arq1,"\nTOTAL DAS VENDAS (EM REAIS): %.2f",total_venda_de_todos_valor);
+    fprintf(arq1,"\nTOTAL DAS VENDAS (EM REAIS): R$%.2f",total_venda_de_todos_valor);
 
-
-    //MAIS E MENOS VENDIDOS REAIS
-    fprintf(arq1,"\n %s produto que mais vendeu (R$):  R$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
-    fprintf(arq1,"\n %s produto que menos vendeu (R$):  R$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
+    fprintf(arq1,"\n");
+     //MAIS E MENOS VENDIDOS
+    fprintf(arq1,"\nPRODUTO QUE MAIS VENDEU (EM REAIS): %sR$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
+    fprintf(arq1,"\nPRODUTO QUE MAIS VENDEU (UNIDADE):  %s%i ",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
+    fprintf(arq1,"\n");
     //MAIS E MENOS VENDIDOS UNIDADE
-    fprintf(arq1,"\n %s produto que mais vendeu (UN):  %i",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
-    fprintf(arq1,"\n %s produto que menos vendeu (UN):  %i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);
+    fprintf(arq1,"\nPRODUTO QUE MENOS VENDEU (EM REAIS): %sR$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
+    fprintf(arq1,"\nPRODUTO QUE MENOS VENDEU (UNIDADE):  %s%i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);
 
 }
 
