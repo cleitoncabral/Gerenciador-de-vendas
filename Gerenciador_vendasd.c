@@ -264,53 +264,6 @@ void exibe_dados_produto(FILE *arq1){
     fprintf(arq1,"\n %s produto que mais vendeu (UN):  %i",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
     fprintf(arq1,"\n %s produto que menos vendeu (UN):  %i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);
 }
-/*void mais_menos(){
-//UNIDADE
-    for(i = 0; i<10; i++){
-        for(j = 0; j<7; j++){
-            total_venda_de_todos_unidade+=produto_dia[i][j];
-            total_venda_produto_unidade[i]+=produto_dia[i][j];
-            if (i==0 && j==0){
-            mais_vendido[1][1] = total_venda_produto_unidade[i];
-            menos_vendido[1][1]=total_venda_produto_unidade[i];
-            }
-            if (total_venda_produto_unidade[i]<menos_vendido[1][1]){
-                 menos_vendido[1][1]= total_venda_produto_unidade[i];
-                 posicao_nome_menos = i;
-            }
-            if (total_venda_produto_unidade[i] > mais_vendido[1][1]){
-                mais_vendido[1][1]= total_venda_produto_unidade[i];
-                posicao_nome_mais = i;
-            }
-        }
-    }
-    //VALOR
-    for(i = 0; i<10; i++){
-        total_venda_produto_valor[i]=total_venda_produto_unidade[i]*preco_produto[i];
-        total_venda_de_todos_valor+=total_venda_produto_valor[i];
-        if (i==0){
-            mais_vendidoRS[1]=  total_venda_produto_valor[i];
-            menos_vendidoRS[1]= total_venda_produto_valor[i];
-        }
-            if (total_venda_produto_valor[i] < menos_vendidoRS[1]){
-                  menos_vendidoRS[1]=total_venda_produto_valor[i];
-                  posicao_venda_menos = i;
-            }
-            if (total_venda_produto_valor[i] > mais_vendidoRS[1]){
-                mais_vendidoRS[1]=total_venda_produto_valor[i];
-                posicao_venda_mais = i;
-            }
-    }
-
-}
-void exibe_mais_menos(FILE *arq1){
-    mais_menos();
-//MAIS E MENOS VENDIDOS
-    printf("\n %s produto que mais vendeu (R$):  R$%.2f", nome_produto[posicao_nome_mais], mais_vendidoRS[1]);
-    printf("\n %s produto que menos vendeu (R$):  R$%.2f",nome_produto[posicao_venda_menos], menos_vendidoRS[1]);
-    //MAIS E MENOS VENDIDOS UNIDADE
-    printf("\n %s produto que mais vendeu (UN):  %i",nome_produto[posicao_venda_mais], mais_vendido[1][1]);
-    printf("\n %s produto que menos vendeu (UN):  %i",nome_produto[posicao_venda_menos], menos_vendido[1][1]);}*/
 
 void exibe_produto_semana(FILE *arq1){
     printf("\nTOTAL DAS VENDAS (EM UNIDADE): %i",total_venda_de_todos_unidade);
